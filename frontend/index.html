@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Urban Mobility | Data Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Hero Section (like Uber homepage) -->
+  <section class="hero">
+    <div class="container">
+      <h1>Go anywhere with data</h1>
+      <p class="subtitle">Explore how New York City moves — in real time.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Filters -->
+      <div class="card filters-card">
+        <div class="filter-row">
+          <div class="filter-group">
+            <label>From</label>
+            <input type="date" id="start-date" value="2016-01-01">
+          </div>
+          <div class="filter-group">
+            <label>To</label>
+            <input type="date" id="end-date" value="2016-01-02">
+          </div>
+          <div class="filter-group fare-group">
+            <label>Min Fare</label>
+            <div class="fare-control">
+              <input type="range" id="fare-slider" min="0" max="100" value="0">
+              <span id="fare-value">$0</span>
+            </div>
+          </div>
+          <button id="apply-filters" class="btn-primary">Explore Trips</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loading" class="loading active">
+        <div class="spinner"></div>
+        <p>Fetching urban patterns...</p>
+      </div>
+
+      <!-- Dashboard -->
+      <div id="dashboard" class="dashboard hidden">
+        <!-- Stats Summary -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="total-trips">—</div>
+            <div class="stat-label">Total Trips</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="avg-speed">—</div>
+            <div class="stat-label">Avg Speed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="avg-fare">—</div>
+            <div class="stat-label">Fare / km</div>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="charts-row">
+          <div class="card chart-card">
+            <h3>Trips by Hour</h3>
+            <canvas id="hourlyChart"></canvas>
+          </div>
+          <div class="card chart-card">
+            <h3>Fare vs Distance</h3>
+            <canvas id="fareDistanceChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Hotspots -->
+        <div class="card hotspots-card">
+          <h3>Top Pickup Zones</h3>
+          <div class="hotspots-grid" id="hotspots-grid"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
